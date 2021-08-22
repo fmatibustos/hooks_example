@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import React from "react";
+
+//Creando hook propio
+
+function useCuenta(init,max){
+  const [cuenta,setCuenta] = React.useState(init); 
+  if (cuenta>max){
+    setCuenta(0)
+  }
+  return [cuenta,setCuenta]
 }
+
+//Usando el Hook useState
+function App() {
+ const [cuenta,setCuenta] =useCuenta(0,5)
+return <button onClick={()=> {
+  setCuenta(cuenta +1);
+}} >Sumar: {cuenta} </button>
+
+};
 
 export default App;
